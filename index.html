@@ -5,191 +5,279 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>FAQ – Centrale Photovoltaïque SOLARGEO</title>
 <style>
+  /* ===== DESIGN SYSTEM 2026 (Variables) ===== */
+  :root {
+    --primary: #ffcd00;
+    --primary-hover: #ffd54a;
+    --text-main: #2b230f;
+    --text-muted: #504115;
+    --bg-page: #fdfbf5; /* Crème ultra-doux, plus moderne que le jaune fort */
+    --bg-card: #ffffff;
+    --shadow-sm: 0 4px 12px rgba(43, 35, 15, 0.03);
+    --shadow-md: 0 8px 32px rgba(43, 35, 15, 0.06);
+    --radius-card: 16px;
+    --radius-pill: 50px;
+    --transition: 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
   /* ===== RESET & BASE ===== */
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   body {
-    font-family: -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
     font-size: 19px;
     line-height: 1.7;
-    color: #1a1a1a;
-    background: #f8f9fa;
+    color: var(--text-main);
+    background: var(--bg-page);
     -webkit-font-smoothing: antialiased;
+    scroll-behavior: smooth;
   }
 
-  /* ===== HEADER ===== */
-  .faq-header {
-    background: linear-gradient(135deg, #0d1b2a 0%, #1b3a5c 100%);
-    color: #fff;
-    padding: 40px 20px 30px;
+  /* ===== LOGO BAR ===== */
+  .faq-logo-bar {
+    background: var(--bg-card);
+    padding: 16px 20px; 
     text-align: center;
+    border-bottom: 2px solid var(--primary);
   }
-  .faq-header img.logo {
-    max-width: 220px;
-    margin-bottom: 16px;
+  .faq-logo-bar img {
+    max-width: 180px; /* Augmenté de 120px à 180px */
+    vertical-align: middle;
   }
-  .faq-header h1 {
-    font-size: 28px;
-    font-weight: 700;
-    margin-bottom: 6px;
+
+
+  /* ===== HEADER / HERO ===== */
+  .faq-hero {
+    background: linear-gradient(to bottom, rgba(0,0,0,0.0) 0%, rgba(0,0,0,0.4) 60%, rgba(0,0,0,0.7) 100%),
+                url('https://cdn.prod.website-files.com/64c136d55ec44c1f42868301/69af154422e948329a9425ad_Maison_seule_Landscape_03.webp') center/cover no-repeat;
+    color: #fff;
+    padding: 160px 20px 80px;
+    text-align: center;
+    position: relative;
+    min-height: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
   }
-  .faq-header p {
-    font-size: 18px;
-    opacity: 0.85;
+  .faq-hero h1 {
+    font-size: 38px;
+    font-weight: 800;
+    margin-bottom: 12px;
+    color: var(--primary);
+    text-shadow: 0 4px 12px rgba(0,0,0,0.5);
+    letter-spacing: -0.5px;
+  }
+  .faq-hero p {
+    font-size: 20px;
+    color: #ffffff;
+    max-width: 500px;
+    margin: 0 auto;
+    text-shadow: 0 2px 8px rgba(0,0,0,0.5);
+    font-weight: 400;
   }
 
   /* ===== SEARCH ===== */
   .faq-search-wrap {
     max-width: 860px;
-    margin: -28px auto 0;
+    margin: -36px auto 0;
     padding: 0 20px;
     position: relative;
     z-index: 2;
   }
   .faq-search {
     width: 100%;
-    padding: 18px 24px 18px 54px;
-    font-size: 19px;
-    border: 2px solid #ddd;
-    border-radius: 14px;
-    background: #fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='22' height='22' fill='%23999' viewBox='0 0 24 24'%3E%3Cpath d='M15.5 14h-.79l-.28-.27A6.47 6.47 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z'/%3E%3C/svg%3E") 18px center no-repeat;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-    transition: border-color 0.2s;
+    padding: 22px 28px 22px 60px;
+    font-size: 18px;
+    border: none;
+    border-radius: var(--radius-pill);
+    background: var(--bg-card) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' fill='%23a38317' viewBox='0 0 24 24'%3E%3Cpath d='M15.5 14h-.79l-.28-.27A6.47 6.47 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z'/%3E%3C/svg%3E") 24px center no-repeat;
+    box-shadow: var(--shadow-md);
+    transition: all var(--transition);
     outline: none;
+    color: var(--text-main);
   }
-  .faq-search:focus { border-color: #e8a817; }
-  .faq-search::placeholder { color: #999; }
+  .faq-search:focus { 
+    box-shadow: 0 0 0 3px var(--primary), var(--shadow-md); 
+  }
+  .faq-search::placeholder { color: #a38317; opacity: 0.7; }
 
   /* ===== CATEGORY FILTERS ===== */
   .faq-categories {
     max-width: 860px;
-    margin: 24px auto 10px;
+    margin: 32px auto 20px;
     padding: 0 20px;
     display: flex;
     flex-wrap: wrap;
-    gap: 10px;
+    gap: 12px;
     justify-content: center;
   }
   .faq-cat-btn {
-    padding: 10px 20px;
+    padding: 12px 24px;
     font-size: 16px;
     font-weight: 600;
-    border: 2px solid #ddd;
-    border-radius: 50px;
-    background: #fff;
-    color: #333;
+    border: none;
+    border-radius: var(--radius-pill);
+    background: var(--bg-card);
+    color: var(--text-muted);
+    box-shadow: var(--shadow-sm);
     cursor: pointer;
-    transition: all 0.2s;
+    transition: all var(--transition);
     white-space: nowrap;
+    display: flex;
+    align-items: center;
+    gap: 8px;
   }
-  .faq-cat-btn:hover { border-color: #e8a817; color: #e8a817; }
+  .faq-cat-btn:hover { 
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+    color: var(--text-main);
+  }
   .faq-cat-btn.active {
-    background: #e8a817;
-    color: #fff;
-    border-color: #e8a817;
+    background: var(--primary);
+    color: var(--text-main);
+    font-weight: 700;
+    box-shadow: 0 4px 16px rgba(255, 205, 0, 0.3);
   }
 
   /* ===== FAQ CONTAINER ===== */
   .faq-container {
     max-width: 860px;
-    margin: 20px auto 60px;
+    margin: 20px auto 80px;
     padding: 0 20px;
   }
 
   /* ===== SECTION ===== */
-  .faq-section { margin-bottom: 28px; }
+  .faq-section { 
+    margin-bottom: 40px; 
+    animation: fadeIn 0.5s ease forwards;
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
   .faq-section-title {
     font-size: 22px;
-    font-weight: 700;
-    color: #0d1b2a;
-    padding: 16px 0 10px;
-    border-bottom: 3px solid #e8a817;
-    margin-bottom: 12px;
+    font-weight: 800;
+    color: var(--text-main);
+    padding: 0 0 16px 0;
+    margin-bottom: 16px;
     display: flex;
     align-items: center;
-    gap: 10px;
   }
-  .faq-section-icon { font-size: 26px; }
+  /* Ligne verticale élégante au lieu d'un vieux soulignement */
+  .faq-section-title::before {
+    content: '';
+    display: inline-block;
+    width: 6px;
+    height: 24px;
+    background-color: var(--primary);
+    border-radius: 4px;
+    margin-right: 14px;
+  }
 
   /* ===== ACCORDION ITEM ===== */
   .faq-item {
-    background: #fff;
-    border-radius: 12px;
-    margin-bottom: 10px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
-    border: 1px solid #eee;
+    background: var(--bg-card);
+    border-radius: var(--radius-card);
+    margin-bottom: 12px;
+    box-shadow: var(--shadow-sm);
     overflow: hidden;
-    transition: box-shadow 0.2s;
+    transition: all var(--transition);
+    border: 1px solid rgba(0,0,0,0.02);
   }
-  .faq-item:hover { box-shadow: 0 4px 16px rgba(0,0,0,0.08); }
+  .faq-item:hover { 
+    box-shadow: var(--shadow-md); 
+  }
   .faq-item.hidden { display: none; }
 
   .faq-question {
-    padding: 20px 24px;
+    padding: 24px 28px;
     cursor: pointer;
     display: flex;
     justify-content: space-between;
     align-items: center;
     font-weight: 600;
     font-size: 19px;
-    color: #1a1a1a;
+    color: var(--text-main);
     user-select: none;
-    gap: 16px;
+    gap: 20px;
+    transition: color var(--transition);
   }
-  .faq-question:hover { color: #e8a817; }
+  .faq-question:hover { color: #8a6c10; }
+  
+  /* Chevron CSS pur (Design 2026) */
   .faq-chevron {
-    width: 28px;
-    height: 28px;
-    min-width: 28px;
+    width: 36px;
+    height: 36px;
+    min-width: 36px;
     border-radius: 50%;
-    background: #f0f0f0;
+    background: var(--bg-page);
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: transform 0.3s, background 0.3s;
-    font-size: 16px;
-    color: #666;
+    transition: all var(--transition);
+  }
+  .faq-chevron::after {
+    content: '';
+    width: 10px;
+    height: 10px;
+    border-right: 2px solid var(--text-muted);
+    border-bottom: 2px solid var(--text-muted);
+    transform: translateY(-3px) rotate(45deg);
+    transition: all var(--transition);
   }
   .faq-item.active .faq-chevron {
-    transform: rotate(180deg);
-    background: #e8a817;
-    color: #fff;
+    background: var(--primary);
+  }
+  .faq-item.active .faq-chevron::after {
+    transform: translateY(2px) rotate(225deg);
+    border-color: var(--text-main);
   }
 
   .faq-answer {
     max-height: 0;
     overflow: hidden;
-    transition: max-height 0.4s ease, padding 0.3s ease;
-    padding: 0 24px;
+    transition: max-height 0.5s cubic-bezier(0.16, 1, 0.3, 1), padding 0.5s ease;
+    padding: 0 28px;
+    color: var(--text-muted);
   }
   .faq-item.active .faq-answer {
     max-height: 2000px;
-    padding: 0 24px 24px;
+    padding: 0 28px 28px;
   }
   .faq-answer p { margin-bottom: 12px; }
   .faq-answer ul { margin: 8px 0 12px 24px; }
   .faq-answer li { margin-bottom: 6px; }
-  .faq-answer strong { color: #0d1b2a; }
+  .faq-answer strong { color: var(--text-main); }
+
+  .faq-answer .warning, .faq-answer .info-box {
+    padding: 16px 20px;
+    border-radius: 12px;
+    margin: 16px 0;
+    font-size: 17.5px;
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+  }
   .faq-answer .warning {
-    background: #fff8e1;
-    border-left: 4px solid #e8a817;
-    padding: 14px 18px;
-    border-radius: 8px;
-    margin: 12px 0;
-    font-size: 17px;
+    background: #fff9e6;
+    border-left: 4px solid #d0a711;
+    color: var(--text-muted);
   }
-  .faq-answer .warning::before { content: "⚠️ "; }
+  .faq-answer .warning::before { content: "⚠️"; font-size: 20px; }
+  
   .faq-answer .info-box {
-    background: #e3f2fd;
-    border-left: 4px solid #1976d2;
-    padding: 14px 18px;
-    border-radius: 8px;
-    margin: 12px 0;
+    background: #fdfbf5;
+    border-left: 4px solid var(--primary);
+    color: var(--text-muted);
   }
+  .faq-answer .info-box::before { content: "💡"; font-size: 20px; }
+
   .faq-answer img {
     max-width: 100%;
-    border-radius: 10px;
-    margin: 14px 0;
-    box-shadow: 0 2px 12px rgba(0,0,0,0.1);
+    border-radius: 12px;
+    margin: 16px 0;
+    box-shadow: var(--shadow-sm);
   }
   .faq-answer .img-row {
     display: flex;
@@ -197,10 +285,8 @@
     flex-wrap: wrap;
     justify-content: center;
   }
-  .faq-answer .img-row img {
-    max-width: 280px;
-    width: 100%;
-  }
+  .faq-answer .img-row img { max-width: 280px; width: 100%; }
+
   .faq-answer .priority-list {
     counter-reset: priority;
     list-style: none;
@@ -209,75 +295,104 @@
   }
   .faq-answer .priority-list li {
     counter-increment: priority;
-    padding: 10px 14px 10px 50px;
+    padding: 12px 16px 12px 54px;
     position: relative;
-    background: #f8f9fa;
-    border-radius: 8px;
-    margin-bottom: 8px;
+    background: var(--bg-page);
+    border-radius: 10px;
+    margin-bottom: 10px;
   }
   .faq-answer .priority-list li::before {
     content: counter(priority);
     position: absolute;
     left: 14px;
-    top: 10px;
-    width: 28px;
-    height: 28px;
-    background: #e8a817;
-    color: #fff;
+    top: 12px;
+    width: 26px;
+    height: 26px;
+    background: var(--primary);
+    color: var(--text-main);
     font-weight: 700;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 15px;
+    font-size: 14px;
   }
 
   /* ===== NO RESULTS ===== */
   .faq-no-results {
     text-align: center;
     padding: 60px 20px;
-    color: #888;
+    color: var(--text-muted);
     font-size: 20px;
     display: none;
+    background: var(--bg-card);
+    border-radius: var(--radius-card);
+    box-shadow: var(--shadow-sm);
   }
 
   /* ===== CONTACT FOOTER ===== */
   .faq-contact {
     max-width: 860px;
-    margin: 0 auto 60px;
-    padding: 30px;
-    background: linear-gradient(135deg, #0d1b2a 0%, #1b3a5c 100%);
-    color: #fff;
-    border-radius: 16px;
-    text-align: center;
+    margin: 0 auto 80px;
+    padding: 0 20px;
   }
-  .faq-contact h3 { font-size: 22px; margin-bottom: 10px; }
-  .faq-contact a {
-    color: #e8a817;
-    font-size: 20px;
+  .faq-contact-inner {
+    background: linear-gradient(135deg, var(--text-main) 0%, #403411 100%);
+    color: #fff;
+    border-radius: var(--radius-card);
+    padding: 48px 36px;
+    text-align: center;
+    box-shadow: var(--shadow-md);
+  }
+  .faq-contact-inner h3 {
+    font-size: 26px;
+    margin-bottom: 12px;
+    color: var(--primary);
+  }
+  .faq-contact-inner p { color: rgba(255,255,255,0.85); font-size: 18px; max-width: 600px; margin: 0 auto; }
+  .faq-contact-inner a {
+    display: inline-block;
+    margin-top: 24px;
+    padding: 16px 36px;
+    background: var(--primary);
+    color: var(--text-main);
+    font-size: 18px;
     font-weight: 700;
     text-decoration: none;
+    border-radius: var(--radius-pill);
+    transition: all var(--transition);
+    box-shadow: 0 4px 16px rgba(255, 205, 0, 0.2);
   }
-  .faq-contact a:hover { text-decoration: underline; }
+  .faq-contact-inner a:hover { 
+    background: var(--primary-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(255, 205, 0, 0.4);
+  }
 
   /* ===== RESPONSIVE ===== */
   @media (max-width: 600px) {
     body { font-size: 17px; }
-    .faq-header h1 { font-size: 23px; }
-    .faq-question { padding: 16px 18px; font-size: 17px; }
-    .faq-answer { padding: 0 18px; }
-    .faq-item.active .faq-answer { padding: 0 18px 18px; }
-    .faq-cat-btn { padding: 8px 14px; font-size: 14px; }
-    .faq-answer .img-row img { max-width: 100%; }
+    .faq-hero { padding: 120px 16px 60px; min-height: 320px; }
+    .faq-hero h1 { font-size: 28px; }
+    .faq-question { padding: 20px; font-size: 17.5px; gap: 12px;}
+    .faq-answer { padding: 0 20px; }
+    .faq-item.active .faq-answer { padding: 0 20px 20px; }
+    .faq-cat-btn { padding: 10px 18px; font-size: 15px; }
+    .faq-contact-inner { padding: 36px 20px; }
+    .faq-contact-inner h3 { font-size: 22px; }
   }
 </style>
 </head>
 <body>
 
-<!-- ===== HEADER ===== -->
-<div class="faq-header">
-  <img src="https://cdn.prod.website-files.com/64c136d55ec44c1f42868301/64c2332cf4a865088f02e71f_Solargeo-logo-RGB-1600px%20copie.png" alt="SOLARGEO" class="logo">
-  <h1>Questions fréquentes</h1>
+<!-- ===== LOGO BAR ===== -->
+<div class="faq-logo-bar">
+  <img src="https://cdn.prod.website-files.com/64c136d55ec44c1f42868301/64c2332cf4a865088f02e71f_Solargeo-logo-RGB-1600px%20copie.png" alt="SOLARGEO">
+</div>
+
+<!-- ===== HERO ===== -->
+<div class="faq-hero">
+  <h1>Foire aux questions</h1>
   <p>Tout savoir sur votre centrale photovoltaïque</p>
 </div>
 
@@ -289,28 +404,28 @@
 <!-- ===== CATEGORY FILTERS ===== -->
 <div class="faq-categories" id="faqCategories">
   <button class="faq-cat-btn active" data-cat="all">Tout afficher</button>
-  <button class="faq-cat-btn" data-cat="general">☀️ Généralités</button>
-  <button class="faq-cat-btn" data-cat="edf">💶 EDF &amp; Surplus</button>
-  <button class="faq-cat-btn" data-cat="conso">🔌 Consommation</button>
-  <button class="faq-cat-btn" data-cat="appareils">🍳 Appareils</button>
-  <button class="faq-cat-btn" data-cat="voyants">🚦 Voyants</button>
-  <button class="faq-cat-btn" data-cat="systeme">⚙️ Système</button>
-  <button class="faq-cat-btn" data-cat="app">📱 Application</button>
-  <button class="faq-cat-btn" data-cat="donnees">📊 Données</button>
-  <button class="faq-cat-btn" data-cat="meteo">🌧️ Météo &amp; Coupures</button>
-  <button class="faq-cat-btn" data-cat="entretien">🧹 Entretien</button>
+  <button class="faq-cat-btn" data-cat="general">&#9728;&#65039; Généralités</button>
+  <button class="faq-cat-btn" data-cat="edf">&#128182; EDF &amp; Surplus</button>
+  <button class="faq-cat-btn" data-cat="conso">&#128268; Consommation</button>
+  <button class="faq-cat-btn" data-cat="appareils">&#127859; Appareils</button>
+  <button class="faq-cat-btn" data-cat="voyants">&#128678; Voyants</button>
+  <button class="faq-cat-btn" data-cat="systeme">&#9881;&#65039; Système</button>
+  <button class="faq-cat-btn" data-cat="app">&#128241; Application</button>
+  <button class="faq-cat-btn" data-cat="donnees">&#128202; Données</button>
+  <button class="faq-cat-btn" data-cat="meteo">&#127783;&#65039; Météo &amp; Coupures</button>
+  <button class="faq-cat-btn" data-cat="entretien">&#129529; Entretien</button>
 </div>
 
 <!-- ===== FAQ CONTENT ===== -->
 <div class="faq-container" id="faqContainer">
 
-  <!-- 1. GÉNÉRALITÉS -->
+  <!-- 1. GENERALITES -->
   <div class="faq-section" data-cat="general">
-    <div class="faq-section-title"><span class="faq-section-icon">☀️</span> Généralités</div>
+    <div class="faq-section-title">Généralités</div>
     <div class="faq-item">
       <div class="faq-question">
         <span>Suis-je totalement indépendant d'EDF ?</span>
-        <span class="faq-chevron">▼</span>
+        <span class="faq-chevron"></span>
       </div>
       <div class="faq-answer">
         <p><strong>Non.</strong> EDF reste un complément dans les situations suivantes :</p>
@@ -325,45 +440,41 @@
 
   <!-- 2. FACTURATION EDF -->
   <div class="faq-section" data-cat="edf">
-    <div class="faq-section-title"><span class="faq-section-icon">💶</span> Facturation EDF et vente du surplus</div>
-
+    <div class="faq-section-title">Facturation EDF et vente du surplus</div>
     <div class="faq-item">
       <div class="faq-question">
         <span>Que dois-je faire si je suis mensualisé chez EDF ?</span>
-        <span class="faq-chevron">▼</span>
+        <span class="faq-chevron"></span>
       </div>
       <div class="faq-answer">
-        <p>Vous devez contacter EDF pour <strong>arrêter la mensualisation</strong> et passer au paiement sur facture.</p>
+        <p>Contactez EDF pour <strong>arrêter la mensualisation</strong> et passer au paiement sur facture.</p>
       </div>
     </div>
-
     <div class="faq-item">
       <div class="faq-question">
         <span>Que vais-je continuer à payer à EDF ?</span>
-        <span class="faq-chevron">▼</span>
+        <span class="faq-chevron"></span>
       </div>
       <div class="faq-answer">
-        <p>Vous paierez la <strong>part fixe d'abonnement EDF</strong> ainsi que l'électricité consommée <strong>ponctuellement</strong> lorsque le solaire et les batteries ne suffisent pas.</p>
+        <p>La <strong>part fixe d'abonnement EDF</strong> ainsi que l'électricité consommée <strong>ponctuellement</strong> lorsque le solaire et les batteries ne suffisent pas.</p>
       </div>
     </div>
-
     <div class="faq-item">
       <div class="faq-question">
         <span>Que devient l'électricité que je ne consomme pas ?</span>
-        <span class="faq-chevron">▼</span>
+        <span class="faq-chevron"></span>
       </div>
       <div class="faq-answer">
         <p>L'électricité produite mais non consommée est injectée sur le réseau EDF et <strong>revendue automatiquement</strong>.</p>
       </div>
     </div>
-
     <div class="faq-item">
       <div class="faq-question">
         <span>À quel tarif est revendu le surplus ?</span>
-        <span class="faq-chevron">▼</span>
+        <span class="faq-chevron"></span>
       </div>
       <div class="faq-answer">
-        <p>Le tarif est d'environ <strong>18 centimes d'euro par kWh</strong>.</p>
+        <p>Environ <strong>18 centimes d'euro par kWh</strong>.</p>
         <ul>
           <li>Garanti pendant <strong>20 ans</strong></li>
           <li>Figure dans votre contrat d'achat EDF</li>
@@ -375,22 +486,20 @@
 
   <!-- 3. BONNES HABITUDES -->
   <div class="faq-section" data-cat="conso">
-    <div class="faq-section-title"><span class="faq-section-icon">🔌</span> Bonnes habitudes de consommation</div>
-
+    <div class="faq-section-title">Bonnes habitudes de consommation</div>
     <div class="faq-item">
       <div class="faq-question">
         <span>Quand dois-je utiliser mes appareils énergivores ?</span>
-        <span class="faq-chevron">▼</span>
+        <span class="faq-chevron"></span>
       </div>
       <div class="faq-answer">
         <p>Faites fonctionner vos appareils énergivores (lave-linge, lave-vaisselle, pompe de piscine, etc.) <strong>en journée</strong>, idéalement lorsque les <strong>batteries sont déjà pleines</strong>.</p>
       </div>
     </div>
-
     <div class="faq-item">
       <div class="faq-question">
         <span>Puis-je consommer plus puisque je suis au solaire ?</span>
-        <span class="faq-chevron">▼</span>
+        <span class="faq-chevron"></span>
       </div>
       <div class="faq-answer">
         <p><strong>Non.</strong> Même avec une centrale solaire, il est important de <strong>modérer votre consommation</strong>.</p>
@@ -401,34 +510,31 @@
 
   <!-- 4. APPAREILS -->
   <div class="faq-section" data-cat="appareils">
-    <div class="faq-section-title"><span class="faq-section-icon">🍳</span> Appareils électriques et points de vigilance</div>
-
+    <div class="faq-section-title">Appareils électriques et points de vigilance</div>
     <div class="faq-item">
       <div class="faq-question">
         <span>Mon four fonctionne-t-il avec le solaire ?</span>
-        <span class="faq-chevron">▼</span>
+        <span class="faq-chevron"></span>
       </div>
       <div class="faq-answer">
         <p><strong>Oui en journée</strong>, grâce aux panneaux solaires.</p>
         <p><strong>Non la nuit</strong>, car il n'est pas raccordé aux batteries.</p>
       </div>
     </div>
-
     <div class="faq-item">
       <div class="faq-question">
         <span>Puis-je ajouter de nouveaux appareils énergivores ?</span>
-        <span class="faq-chevron">▼</span>
+        <span class="faq-chevron"></span>
       </div>
       <div class="faq-answer">
         <p>L'installation a été dimensionnée selon votre consommation au moment de l'étude.</p>
-        <p>L'ajout d'un appareil très consommateur (borne de recharge, plaque électrique, etc.) <strong>peut augmenter votre consommation et la centrale solaire peut devenir insuffisante</strong>.</p>
+        <p>L'ajout d'un appareil très consommateur (borne de recharge, plaque électrique, etc.) <strong>peut rendre la centrale solaire insuffisante</strong>.</p>
       </div>
     </div>
-
     <div class="faq-item">
       <div class="faq-question">
-        <span>Que dois-je faire avant toute modification ?</span>
-        <span class="faq-chevron">▼</span>
+        <span>Que dois-je faire avant toute modification électrique ?</span>
+        <span class="faq-chevron"></span>
       </div>
       <div class="faq-answer">
         <ul>
@@ -440,53 +546,49 @@
     </div>
   </div>
 
-  <!-- 5. VOYANTS ONDULEUR -->
+  <!-- 5. VOYANTS -->
   <div class="faq-section" data-cat="voyants">
-    <div class="faq-section-title"><span class="faq-section-icon">🚦</span> Comprendre les voyants de l'onduleur</div>
-
+    <div class="faq-section-title">Comprendre les voyants de l'onduleur</div>
     <div class="faq-item">
       <div class="faq-question">
         <span>À quoi correspondent les voyants de l'onduleur ?</span>
-        <span class="faq-chevron">▼</span>
+        <span class="faq-chevron"></span>
       </div>
       <div class="faq-answer">
         <img src="https://cdn.prod.website-files.com/64c136d55ec44c1f42868301/69aefacd58775ed10bcde3ef_led_onduleur.png" alt="Voyants de l'onduleur" style="max-width:400px;">
         <p>L'onduleur possède <strong>trois voyants</strong> :</p>
         <ul>
-          <li><strong>Voyant A</strong> : fonctionnement normal de l'onduleur</li>
-          <li><strong>Voyant B</strong> : l'onduleur n'est plus connecté au réseau EDF (coupure EDF ou disjoncteur coupé). La maison est alimentée par les batteries</li>
-          <li><strong>Voyant C</strong> : anomalie détectée</li>
+          <li><strong>Voyant A</strong> — fonctionnement normal de l'onduleur</li>
+          <li><strong>Voyant B</strong> — l'onduleur n'est plus connecté au réseau EDF (coupure EDF ou disjoncteur coupé). La maison est alimentée par les batteries</li>
+          <li><strong>Voyant C</strong> — anomalie détectée</li>
         </ul>
-        <div class="warning">Les boutons situés sous l'écran de l'onduleur <strong>ne doivent pas être manipulés</strong> par le client.</div>
+        <div class="warning">Les boutons situés sous l'écran de l'onduleur ne doivent pas être manipulés par le client.</div>
       </div>
     </div>
-
     <div class="faq-item">
       <div class="faq-question">
         <span>Que faire en cas d'anomalie ?</span>
-        <span class="faq-chevron">▼</span>
+        <span class="faq-chevron"></span>
       </div>
       <div class="faq-answer">
-        <p>Si vous n'avez plus de courant, il faut <strong>manipuler l'inverseur</strong> en le positionnant sur <strong>EDF</strong> et appeler le technicien SAV.</p>
+        <p>Si vous n'avez plus de courant, <strong>manipulez l'inverseur</strong> en le positionnant sur <strong>EDF</strong> et appelez le technicien SAV.</p>
         <img src="https://cdn.prod.website-files.com/64c136d55ec44c1f42868301/69aefacdc06e047d66873a76_inverseur.jpg" alt="Inverseur SOLAIRE / EDF" style="max-width:400px;">
       </div>
     </div>
 
-    <!-- VOYANTS BATTERIE -->
-    <div class="faq-section-title" style="margin-top:20px;"><span class="faq-section-icon">🔋</span> Comprendre les voyants de la batterie</div>
-
+    <div class="faq-section-title" style="margin-top:32px;">Comprendre les voyants de la batterie</div>
     <div class="faq-item">
       <div class="faq-question">
         <span>Que signifient les voyants lumineux de la batterie ?</span>
-        <span class="faq-chevron">▼</span>
+        <span class="faq-chevron"></span>
       </div>
       <div class="faq-answer">
         <img src="https://cdn.prod.website-files.com/64c136d55ec44c1f42868301/69aefacda162a62d8d404d1c_led_batterie.png" alt="Voyants de la batterie" style="max-width:350px;">
         <p><strong>État de la batterie (2 premiers voyants) :</strong></p>
         <ul>
-          <li>🟢 <strong>Vert fixe</strong> : batterie allumée</li>
-          <li>🟢 <strong>Vert clignotant</strong> : batterie en charge</li>
-          <li>🔴 <strong>Rouge clignotant</strong> : batterie en décharge (normal la nuit ou lors d'une coupure)</li>
+          <li>Vert fixe — batterie allumée</li>
+          <li>Vert clignotant — batterie en charge</li>
+          <li>Rouge clignotant — batterie en décharge (normal la nuit ou lors d'une coupure)</li>
         </ul>
         <p><strong>Niveau de charge (4 voyants suivants) :</strong></p>
         <ul>
@@ -499,14 +601,13 @@
     </div>
   </div>
 
-  <!-- 7. FONCTIONNEMENT GLOBAL -->
+  <!-- 6. SYSTEME -->
   <div class="faq-section" data-cat="systeme">
-    <div class="faq-section-title"><span class="faq-section-icon">⚙️</span> Fonctionnement global du système</div>
-
+    <div class="faq-section-title">Fonctionnement global du système</div>
     <div class="faq-item">
       <div class="faq-question">
         <span>Quelle est la priorité du système ?</span>
-        <span class="faq-chevron">▼</span>
+        <span class="faq-chevron"></span>
       </div>
       <div class="faq-answer">
         <p>Le système fonctionne automatiquement selon cet ordre :</p>
@@ -517,96 +618,88 @@
         </ol>
       </div>
     </div>
-
     <div class="faq-item">
       <div class="faq-question">
         <span>Les batteries peuvent-elles se charger via EDF ?</span>
-        <span class="faq-chevron">▼</span>
+        <span class="faq-chevron"></span>
       </div>
       <div class="faq-answer">
         <p><strong>Non.</strong> Les batteries ne sont <strong>jamais chargées à partir du réseau EDF</strong>.</p>
       </div>
     </div>
-
     <div class="faq-item">
       <div class="faq-question">
         <span>Quand produisent les panneaux solaires ?</span>
-        <span class="faq-chevron">▼</span>
+        <span class="faq-chevron"></span>
       </div>
       <div class="faq-answer">
-        <p>Les panneaux produisent en journée, généralement entre <strong>7h et 17h</strong>, selon l'orientation et l'environnement.</p>
+        <p>En journée, généralement entre <strong>7h et 17h</strong>, selon l'orientation et l'environnement.</p>
       </div>
     </div>
   </div>
 
-  <!-- 8. APPLICATION SOLARMAN -->
+  <!-- 7. APPLICATION SOLARMAN -->
   <div class="faq-section" data-cat="app">
-    <div class="faq-section-title"><span class="faq-section-icon">📱</span> Utilisation de l'application SOLARMAN SMART</div>
-
+    <div class="faq-section-title">Application SOLARMAN SMART</div>
     <div class="faq-item">
       <div class="faq-question">
         <span>À quoi sert l'application ?</span>
-        <span class="faq-chevron">▼</span>
+        <span class="faq-chevron"></span>
       </div>
       <div class="faq-answer">
-        <p>Elle vous permet de consulter votre <strong>production solaire</strong>, votre <strong>consommation</strong> et l'<strong>état de votre installation</strong>.</p>
+        <p>Elle permet de consulter votre <strong>production solaire</strong>, votre <strong>consommation</strong> et l'<strong>état de votre installation</strong>.</p>
         <div class="img-row">
           <img src="https://cdn.prod.website-files.com/64c136d55ec44c1f42868301/69aefad1af20180d749c77ff_solarman-01.jpg" alt="Application Solarman - Vue 1">
           <img src="https://cdn.prod.website-files.com/64c136d55ec44c1f42868301/69aefacd8f774837ce55ed04_solarman-02.png" alt="Application Solarman - Vue 2">
         </div>
       </div>
     </div>
-
     <div class="faq-item">
       <div class="faq-question">
         <span>À quelle fréquence les données sont-elles mises à jour ?</span>
-        <span class="faq-chevron">▼</span>
+        <span class="faq-chevron"></span>
       </div>
       <div class="faq-answer">
         <p>Environ toutes les <strong>10 minutes</strong>.</p>
-        <div class="info-box">💡 Il est conseillé d'analyser les données sur <strong>24 heures</strong>, plutôt que de consulter l'application en continu.</div>
+        <div class="info-box">Il est conseillé d'analyser les données sur <strong>24 heures</strong>, plutôt que de consulter l'application en continu.</div>
       </div>
     </div>
-
     <div class="faq-item">
       <div class="faq-question">
         <span>Que représentent les courbes de l'onglet « Statistiques » ?</span>
-        <span class="faq-chevron">▼</span>
+        <span class="faq-chevron"></span>
       </div>
       <div class="faq-answer">
         <img src="https://cdn.prod.website-files.com/64c136d55ec44c1f42868301/69aefacd7494c65d082fe211_solarman-03.png" alt="Courbes Statistiques Solarman" style="max-width:350px;">
         <ul>
-          <li><strong>Courbe bleue</strong> : production photovoltaïque</li>
-          <li><strong>Courbe rouge</strong> : consommation de la maison</li>
+          <li><strong>Courbe bleue</strong> — production photovoltaïque</li>
+          <li><strong>Courbe rouge</strong> — consommation de la maison</li>
         </ul>
       </div>
     </div>
-
     <div class="faq-item">
       <div class="faq-question">
         <span>Pourquoi les courbes ne sont-elles pas lisses ?</span>
-        <span class="faq-chevron">▼</span>
+        <span class="faq-chevron"></span>
       </div>
       <div class="faq-answer">
         <p>Les variations correspondent aux <strong>passages nuageux</strong>. Les panneaux continuent de produire, mais moins que par plein soleil.</p>
       </div>
     </div>
-
     <div class="faq-item">
       <div class="faq-question">
         <span>Que se passe-t-il en cas de coupure internet ?</span>
-        <span class="faq-chevron">▼</span>
+        <span class="faq-chevron"></span>
       </div>
       <div class="faq-answer">
-        <p>Les données ne seront plus visibles temporairement. Il faudra attendre le rétablissement de votre connexion internet.</p>
-        <div class="info-box">💡 Votre installation continue de fonctionner normalement, seul l'affichage dans l'application est interrompu.</div>
+        <p>Les données ne seront plus visibles temporairement dans l'application.</p>
+        <div class="info-box">Votre installation continue de fonctionner normalement, seul l'affichage dans l'application est interrompu.</div>
       </div>
     </div>
-
     <div class="faq-item">
       <div class="faq-question">
         <span>Que faire si je change de box ou d'opérateur internet ?</span>
-        <span class="faq-chevron">▼</span>
+        <span class="faq-chevron"></span>
       </div>
       <div class="faq-answer">
         <p>Merci d'en <strong>informer SOLARGEO</strong> afin que l'enregistreur de données soit reconnecté.</p>
@@ -615,34 +708,31 @@
     </div>
   </div>
 
-  <!-- 9. ANALYSE DONNÉES -->
+  <!-- 8. ANALYSE DONNEES -->
   <div class="faq-section" data-cat="donnees">
-    <div class="faq-section-title"><span class="faq-section-icon">📊</span> Analyse de vos données et situations courantes</div>
-
+    <div class="faq-section-title">Analyse de vos données</div>
     <div class="faq-item">
       <div class="faq-question">
         <span>Pourquoi mes batteries ne sont-elles pas pleines à midi ?</span>
-        <span class="faq-chevron">▼</span>
+        <span class="faq-chevron"></span>
       </div>
       <div class="faq-answer">
         <p>Cela peut être dû à un <strong>mauvais temps</strong> ou une <strong>consommation inhabituelle</strong>.</p>
       </div>
     </div>
-
     <div class="faq-item">
       <div class="faq-question">
-        <span>Que se passe-t-il si les batteries ne sont pas pleines le soir venu ?</span>
-        <span class="faq-chevron">▼</span>
+        <span>Que se passe-t-il si les batteries ne sont pas pleines le soir ?</span>
+        <span class="faq-chevron"></span>
       </div>
       <div class="faq-answer">
         <p>Elles risquent d'être vides pendant la nuit et <strong>EDF prendra le relais</strong>.</p>
       </div>
     </div>
-
     <div class="faq-item">
       <div class="faq-question">
         <span>Pourquoi mes batteries sont-elles vides en pleine nuit ?</span>
-        <span class="faq-chevron">▼</span>
+        <span class="faq-chevron"></span>
       </div>
       <div class="faq-answer">
         <p>Probablement une forte consommation nocturne. Vérifiez :</p>
@@ -657,44 +747,40 @@
     </div>
   </div>
 
-  <!-- 10. MÉTÉO ET COUPURES -->
+  <!-- 9. METEO ET COUPURES -->
   <div class="faq-section" data-cat="meteo">
-    <div class="faq-section-title"><span class="faq-section-icon">🌧️</span> Mauvais temps et coupures EDF</div>
-
+    <div class="faq-section-title">Mauvais temps et coupures EDF</div>
     <div class="faq-item">
       <div class="faq-question">
         <span>Les panneaux produisent-ils par mauvais temps ?</span>
-        <span class="faq-chevron">▼</span>
+        <span class="faq-chevron"></span>
       </div>
       <div class="faq-answer">
         <p><strong>Oui</strong>, mais moins efficacement qu'en plein soleil.</p>
       </div>
     </div>
-
     <div class="faq-item">
       <div class="faq-question">
         <span>Que faire si un épisode météo sévère est annoncé ?</span>
-        <span class="faq-chevron">▼</span>
+        <span class="faq-chevron"></span>
       </div>
       <div class="faq-answer">
         <p>Il est conseillé de <strong>réduire votre consommation</strong> afin de préserver la charge des batteries en cas de coupure prolongée.</p>
       </div>
     </div>
-
     <div class="faq-item">
       <div class="faq-question">
         <span>Que faire en cas de coupure EDF ?</span>
-        <span class="faq-chevron">▼</span>
+        <span class="faq-chevron"></span>
       </div>
       <div class="faq-answer">
         <p><strong>Rien.</strong> Le système prend automatiquement le relais. La maison est alors alimentée par les batteries.</p>
       </div>
     </div>
-
     <div class="faq-item">
       <div class="faq-question">
         <span>Et si la coupure a lieu tôt le matin ?</span>
-        <span class="faq-chevron">▼</span>
+        <span class="faq-chevron"></span>
       </div>
       <div class="faq-answer">
         <p>Si les batteries sont vides, il faudra <strong>attendre que le soleil recharge les batteries</strong> pour retrouver de l'électricité.</p>
@@ -702,24 +788,22 @@
     </div>
   </div>
 
-  <!-- 11. ENTRETIEN -->
+  <!-- 10. ENTRETIEN -->
   <div class="faq-section" data-cat="entretien">
-    <div class="faq-section-title"><span class="faq-section-icon">🧹</span> Entretien des panneaux solaires</div>
-
+    <div class="faq-section-title">Entretien des panneaux solaires</div>
     <div class="faq-item">
       <div class="faq-question">
         <span>Faut-il nettoyer les panneaux solaires ?</span>
-        <span class="faq-chevron">▼</span>
+        <span class="faq-chevron"></span>
       </div>
       <div class="faq-answer">
         <p>La pluie nettoie naturellement les panneaux, mais ils peuvent s'encrasser (sable, mousse).</p>
       </div>
     </div>
-
     <div class="faq-item">
       <div class="faq-question">
         <span>Comment nettoyer les panneaux ?</span>
-        <span class="faq-chevron">▼</span>
+        <span class="faq-chevron"></span>
       </div>
       <div class="faq-answer">
         <ul>
@@ -730,11 +814,10 @@
         <div class="warning">Ne montez <strong>jamais seul</strong> en toiture sans équipement. Vous pouvez faire appel à une entreprise spécialisée.</div>
       </div>
     </div>
-
     <div class="faq-item">
       <div class="faq-question">
         <span>Où trouver les garanties du matériel ?</span>
-        <span class="faq-chevron">▼</span>
+        <span class="faq-chevron"></span>
       </div>
       <div class="faq-answer">
         <p>Elles sont détaillées dans les <strong>Conditions Générales de Vente</strong> que vous avez signées.</p>
@@ -744,27 +827,28 @@
 
   <!-- NO RESULTS -->
   <div class="faq-no-results" id="faqNoResults">
-    🔍 Aucune question ne correspond à votre recherche.
+    Aucune question ne correspond à votre recherche.
   </div>
 
 </div>
 
 <!-- ===== CONTACT FOOTER ===== -->
 <div class="faq-contact">
-  <h3>📞 Besoin d'aide ou de conseil ?</h3>
-  <p>En cas de doute, de modification ou de projet d'évolution de votre installation,<br>contactez toujours SOLARGEO avant toute action.</p>
-  <p style="margin-top:14px;"><a href="mailto:martinique@solargeo.fr">martinique@solargeo.fr</a></p>
+  <div class="faq-contact-inner">
+    <h3>Besoin d'aide ou de conseil ?</h3>
+    <p>En cas de doute, de modification ou de projet d'évolution de votre installation,<br>contactez toujours SOLARGEO avant toute action.</p>
+    <a href="mailto:martinique@solargeo.fr">Nous contacter</a>
+  </div>
 </div>
 
 <!-- ===== JAVASCRIPT ===== -->
 <script>
 (function() {
-  // Accordion
+  // Accordions
   document.querySelectorAll('.faq-question').forEach(function(q) {
     q.addEventListener('click', function() {
       var item = this.parentElement;
       var wasActive = item.classList.contains('active');
-      // Close all in same section (optional: remove these 3 lines for multi-open)
       item.closest('.faq-section').querySelectorAll('.faq-item.active').forEach(function(i) {
         i.classList.remove('active');
       });
@@ -772,22 +856,30 @@
     });
   });
 
-  // Search
+  // Search Logic
   var searchInput = document.getElementById('faqSearch');
   var items = document.querySelectorAll('.faq-item');
   var sections = document.querySelectorAll('.faq-section');
   var noResults = document.getElementById('faqNoResults');
 
+  function resetAnimation(el) {
+    el.style.animation = 'none';
+    el.offsetHeight; /* trigger reflow */
+    el.style.animation = null; 
+  }
+
   searchInput.addEventListener('input', function() {
     var query = this.value.toLowerCase().trim();
     var found = 0;
-
-    // Reset category filter
+    
     document.querySelectorAll('.faq-cat-btn').forEach(function(b) { b.classList.remove('active'); });
     document.querySelector('[data-cat="all"]').classList.add('active');
-
-    sections.forEach(function(s) { s.style.display = ''; });
-
+    
+    sections.forEach(function(s) { 
+      s.style.display = ''; 
+      resetAnimation(s);
+    });
+    
     items.forEach(function(item) {
       var text = item.textContent.toLowerCase();
       if (!query || text.indexOf(query) !== -1) {
@@ -797,31 +889,31 @@
         item.classList.add('hidden');
       }
     });
-
-    // Hide empty sections
+    
     sections.forEach(function(s) {
       var visible = s.querySelectorAll('.faq-item:not(.hidden)');
       s.style.display = visible.length === 0 ? 'none' : '';
     });
-
+    
     noResults.style.display = found === 0 ? 'block' : 'none';
   });
 
-  // Category filter
+  // Category Filter Logic
   document.querySelectorAll('.faq-cat-btn').forEach(function(btn) {
     btn.addEventListener('click', function() {
       var cat = this.dataset.cat;
-
+      
       document.querySelectorAll('.faq-cat-btn').forEach(function(b) { b.classList.remove('active'); });
       this.classList.add('active');
-
+      
       searchInput.value = '';
       items.forEach(function(item) { item.classList.remove('hidden'); });
       noResults.style.display = 'none';
-
+      
       sections.forEach(function(s) {
         if (cat === 'all' || s.dataset.cat === cat) {
           s.style.display = '';
+          resetAnimation(s); // Restart fade-in animation
         } else {
           s.style.display = 'none';
         }

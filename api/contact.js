@@ -12,13 +12,31 @@ module.exports = async function handler(req, res) {
   }
 
   try {
-    const { prenom, nom, zone, ville, email, message } = req.body;
+    const { prenom, nom, zone, ville, email, message, turnstileToken } = req.body;
 
     if (!prenom || !nom || !email || !zone) {
       return res.status(400).json({ error: 'Champs obligatoires manquants' });
     }
 
-    // 1. Envoyer email de notification
+    // 1. Verifier Cloudflare Turnstile
+    if (!turnstileToken) {
+      return res.status(400).json({ error: 'Veuillez completer la verification anti-spam' });
+    }
+
+    const captchaResponse = await fetch('https://challenges.cloudflare.com/turnstile/v0/siteverify', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: 'secret=' + encodeURIComponent(process.env.TURNSTILE_SECRET_KEY) + '&response=' + encodeURIComponent(turnstileToken)
+    });
+
+    const captchaData = await captchaResponse.json();
+
+    if (!captchaData.success) {
+      console.error('Echec Turnstile:', captchaData);
+      return res.status(400).json({ error: 'Verification anti-spam echouee' });
+    }
+
+    // 2. Envoyer email de notification
     const emailResponse = await fetch('https://api.brevo.com/v3/smtp/email', {
       method: 'POST',
       headers: {
@@ -45,7 +63,7 @@ module.exports = async function handler(req, res) {
       return res.status(500).json({ error: 'Erreur envoi email', details: emailData });
     }
 
-    // 2. Ajouter le contact dans le CRM Brevo
+    // 3. Ajouter le contact dans le CRM Brevo
     await fetch('https://api.brevo.com/v3/contacts', {
       method: 'POST',
       headers: {

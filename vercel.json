@@ -1,9 +1,4 @@
 {
-  "functions": {
-    "api/contact.js": {
-      "runtime": "@vercel/node@3"
-    }
-  },
   "headers": [
     {
       "source": "/(.*)",
